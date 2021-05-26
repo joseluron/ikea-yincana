@@ -1,0 +1,29 @@
+.homeContainer {
+  padding: 15px;
+
+  .homeWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .header {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin: 25px 0;
+
+      img {
+        width: 300px;
+        height: auto;
+        padding-bottom: 15px;
+      }
+      
+      span {
+        font-size: 35px;
+        font-weight: bold;
+      }
+    }
+  }
+}
