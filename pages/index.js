@@ -1,17 +1,29 @@
+import {useContext, useState} from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
-import styles from '../styles/Home.module.scss';
 
+import ExamContext from '../components/ExamContext';
+import { calculateScore } from '../utils/calculateScore';
+
+import styles from '../styles/Home.module.scss';
 import ikeaLogo from '../assets/ikea-logo.png';
 
 export default function Home() {
-  
+  const [score, setScore] = useState(0);
+
+  const { cienciasNaturalesAnswers } = useContext(ExamContext);
+  const [ cienciasNaturales ] = cienciasNaturalesAnswers;
+
   const pages = [
     {
       page: 'Ciencias Naturales',
       path: 'cienciasNaturales'
     }
   ];
+
+  const calculateUserScore = () => {
+    setScore(calculateScore([cienciasNaturales]));
+  }
 
   return (
     <div className={styles.homeContainer}>
@@ -30,15 +42,18 @@ export default function Home() {
           <span>Matriz P&C</span>
         </div>
 
-        <div>
+        <div className={styles.pagesWrapper}>
           {pages.map(page => {
             return (
-              <Link href={`/${page.path}`}>
+              <Link key={page} href={`/${page.path}`}>
                 <a>{page.page}</a>
               </Link>
             )
           })}
         </div>
+
+        <button type="button" onClick={calculateUserScore}>Calcular Puntuacion</button>
+        {score > 0 && <h1>{`Puntuacion del usuario: ${score}`}</h1>}
 
       </div>
     </div>

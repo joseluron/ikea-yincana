@@ -1,12 +1,16 @@
-import Layout from '../components/layout';
+import { ExamProvider } from '../components/ExamContext';
+
+import Layout from '../components/Layout';
 
 import '../styles/globals.css'
 
 function MyApp({ Component, pageProps }) {
   return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <ExamProvider>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </ExamProvider>
   );
 }
 
